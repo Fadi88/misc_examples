@@ -29,26 +29,16 @@ private:
     std::chrono::time_point<std::chrono::high_resolution_clock> m_start_point;
 };
 
-struct base{
-    std::vector<double> m_container;
-    base()
-    {
-        m_container.reserve(10000);
-    }
-};
 
 void test_raw()
 {
-    std::unique_ptr<base> test = std::make_unique<base>();
-    test->m_container.push_back(42);
+    volatile std::unique_ptr<int> test = std::make_unique<int>();
 }
 
 void test_unique()
 {
-    base *test = new base();
+    volatile int *test = new int();
     
-    test->m_container.push_back(42.0);
-
     delete test;
 }
 
